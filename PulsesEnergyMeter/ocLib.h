@@ -18,7 +18,7 @@ class PulseMeter {
 		RunningMedian<uint16_t, 5> power;
 
 		//Constructor
-		inline PulseMeter (uint8_t num) : pin (num), firstPulse (true) {}
+		PulseMeter(uint8_t num);
 
 		void check();
 

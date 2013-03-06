@@ -1,5 +1,12 @@
 #include "ocLib.h"
 
+PulseMeter::PulseMeter(uint8_t num) {
+	pin = num;
+	firstPulse = true;
+
+	pinMode(pin, INPUT);
+}
+
 void PulseMeter::check() {
 	uint32_t delta, currentMicros = micros();
 	uint16_t tempPower, _median;
