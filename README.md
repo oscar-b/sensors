@@ -4,7 +4,7 @@ sensors
 PulsesEnergyMeter
 -----------------
 
-Sensor for collecting pulses from the S0 output of three energy meters.
+Sensor for collecting pulses from the S0 output of four energy meters.
 Calculates momentary power use, which is mean filtered when sent by
 RFM12B.
 

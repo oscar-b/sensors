@@ -9,7 +9,7 @@ const int networkGroup = 210;
 enum { TASK_PREP_TX, TASK_TX, TASK_RFM12B, TASK_LIMIT };
 Scheduler scheduler (TASK_LIMIT);
 
-PulseMeter pm[3] = {PulseMeter(5), PulseMeter(6), PulseMeter(7)};
+PulseMeter pm[4] = {PulseMeter(4), PulseMeter(5), PulseMeter(6), PulseMeter(7)};
 
 // Max 66 bytes (33 ints)
 typedef struct {
@@ -32,11 +32,12 @@ void loop() {
 	pm[0].check();
 	pm[1].check();
 	pm[2].check();
+	pm[3].check();
 
 	switch (scheduler.poll()) {
 
 		case TASK_PREP_TX:
-			for (int i = 0; i <= 2; i++) {
+			for (int i = 0; i < sizeof(pm); i++) {
 				payload[i].pulses = pm[i].pulses;
 				payload[i].power = 0;
 				if (pm[i].power.getStatus() == pm[i].power.OK)
