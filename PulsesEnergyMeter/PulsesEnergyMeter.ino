@@ -1,11 +1,6 @@
 #include <JeeLib.h>
 #include "ocLib.h"
 
-#define freq RF12_868MHZ
-
-const int nodeID = 5;
-const int networkGroup = 210;
-
 enum { TASK_PREP_TX, TASK_TX, TASK_RFM12B, TASK_LIMIT };
 Scheduler scheduler (TASK_LIMIT);
 
@@ -21,7 +16,7 @@ PayloadItem payload[3];
 void setup() {
 	Serial.begin(57600);
 	
-	rf12_initialize(nodeID, freq, networkGroup);
+	rf12_initialize(5, RF12_868MHZ, 210);
 	
 	//Start TX after 10s
 	scheduler.timer(TASK_PREP_TX, 100);
