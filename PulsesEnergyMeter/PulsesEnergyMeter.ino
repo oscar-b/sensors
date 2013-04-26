@@ -11,7 +11,7 @@ typedef struct {
 	unsigned int power;
 	unsigned int pulses;
 } PayloadItem;
-PayloadItem payload[3];
+PayloadItem payload[4];
 
 void setup() {
 	Serial.begin(57600);
@@ -32,7 +32,7 @@ void loop() {
 	switch (scheduler.poll()) {
 
 		case TASK_PREP_TX:
-			for (int i = 0; i < sizeof(pm); i++) {
+			for (int i = 0; i < 4; i++) {
 				payload[i].pulses = pm[i].pulses;
 				payload[i].power = 0;
 				if (pm[i].power.getStatus() == pm[i].power.OK)
