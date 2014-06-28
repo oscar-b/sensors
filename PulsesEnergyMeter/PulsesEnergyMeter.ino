@@ -1,4 +1,5 @@
 #include <JeeLib.h>
+#include <avr/wdt.h>
 #include "ocLib.h"
 
 enum { TASK_PREP_TX, TASK_TX, TASK_RFM12B, TASK_LIMIT };
@@ -15,6 +16,8 @@ PayloadItem payload[4];
 
 void setup() {
 	Serial.begin(57600);
+
+	wdt_enable(WDTO_8S);
 	
 	rf12_initialize(5, RF12_868MHZ, 210);
 	
@@ -24,6 +27,9 @@ void setup() {
 }
 
 void loop() {
+	//Reset watchdog
+	wdt_reset();
+
 	pm[0].check();
 	pm[1].check();
 	pm[2].check();
