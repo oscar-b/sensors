@@ -52,7 +52,7 @@ void loop() {
 		case TASK_TX:
 			if (rf12_canSend()) {
 				rf12_sendStart(0, &payload, sizeof(payload), 2);
-				scheduler.timer(TASK_PREP_TX, 100);
+				scheduler.timer(TASK_PREP_TX, 37); //Primes  31, 37, 41, 43, 47
 			} else {
 				//Retry in 100ms
 				scheduler.timer(TASK_TX, 1);
