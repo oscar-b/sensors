@@ -21,6 +21,8 @@ void setup() {
 	
 	rf12_initialize(5, RF12_868MHZ, 210);
 	
+	lowerDataRate();
+
 	//Start TX after 10s
 	scheduler.timer(TASK_PREP_TX, 100);
 	scheduler.timer(TASK_RFM12B, 1);
@@ -63,4 +65,10 @@ void loop() {
 			break;
 	}	
 	
+}
+
+void lowerDataRate() {
+	rf12_control(0xC623); //Data Rate 9.579kbps
+	rf12_control(0x94C2); //RX Bandwidth 67kHz
+	rf12_control(0x9820); //Deviation 45kHz 
 }
